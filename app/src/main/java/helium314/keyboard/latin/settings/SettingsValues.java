@@ -144,34 +144,31 @@ public class SettingsValues {
         mInputAttributes = inputAttributes;
 
         // Get the settings preferences
-        mAutoCap = prefs.getBoolean(Settings.PREF_AUTO_CAP, true) && ScriptUtils.scriptSupportsUppercase(mLocale);
-        mVibrateOn = Settings.readVibrationEnabled(prefs, res);
-        mSoundOn = Settings.readKeypressSoundEnabled(prefs, res);
+        mAutoCap = false;
+        mVibrateOn = false;
+        mSoundOn = true;
         mKeyPreviewPopupOn = Settings.readKeyPreviewPopupEnabled(prefs, res);
         mSlidingKeyInputPreviewEnabled = prefs.getBoolean(
                 DebugSettings.PREF_SLIDING_KEY_INPUT_PREVIEW, true);
-        mShowsVoiceInputKey = mInputAttributes.mShouldShowVoiceInputKey;
+        mShowsVoiceInputKey = false;
         final String languagePref = prefs.getString(Settings.PREF_LANGUAGE_SWITCH_KEY, "internal");
         mLanguageSwitchKeyToOtherImes = languagePref.equals("input_method") || languagePref.equals("both");
         mLanguageSwitchKeyToOtherSubtypes = languagePref.equals("internal") || languagePref.equals("both");
         mShowsLanguageSwitchKey = prefs.getBoolean(Settings.PREF_SHOW_LANGUAGE_SWITCH_KEY, false); // only relevant for default functional key layout
-        mShowsNumberRow = prefs.getBoolean(Settings.PREF_SHOW_NUMBER_ROW, false);
-        mLocalizedNumberRow = prefs.getBoolean(Settings.PREF_LOCALIZED_NUMBER_ROW, true);
-        mShowsHints = prefs.getBoolean(Settings.PREF_SHOW_HINTS, true);
-        mShowsPopupHints = prefs.getBoolean(Settings.PREF_SHOW_POPUP_HINTS, false);
+        mShowsNumberRow = true;
+        mLocalizedNumberRow = true;
+        mShowsHints = false;
+        mShowsPopupHints =false;
         mSpaceForLangChange = prefs.getBoolean(Settings.PREF_SPACE_TO_CHANGE_LANG, true);
-        mShowsEmojiKey = prefs.getBoolean(Settings.PREF_SHOW_EMOJI_KEY, false);
+        mShowsEmojiKey = false;
         mVarToolbarDirection = prefs.getBoolean(Settings.PREF_VARIABLE_TOOLBAR_DIRECTION, true);
         mUsePersonalizedDicts = prefs.getBoolean(Settings.PREF_KEY_USE_PERSONALIZED_DICTS, true);
-        mUseDoubleSpacePeriod = prefs.getBoolean(Settings.PREF_KEY_USE_DOUBLE_SPACE_PERIOD, true)
-                && inputAttributes.mIsGeneralTextInput;
-        mBlockPotentiallyOffensive = Settings.readBlockPotentiallyOffensive(prefs, res);
+        mUseDoubleSpacePeriod = false;
+        mBlockPotentiallyOffensive = false;
         mUrlDetectionEnabled = prefs.getBoolean(Settings.PREF_URL_DETECTION, false);
-        mAutoCorrectionEnabledPerUserSettings = Settings.readAutoCorrectEnabled(prefs);
-        mAutoCorrectEnabled = mAutoCorrectionEnabledPerUserSettings
-                && (mInputAttributes.mInputTypeShouldAutoCorrect || Settings.readMoreAutoCorrectEnabled(prefs))
-                && (mUrlDetectionEnabled || !InputTypeUtils.isUriOrEmailType(mInputAttributes.mInputType));
-        mCenterSuggestionTextToEnter = Settings.readCenterSuggestionTextToEnter(prefs, res);
+        mAutoCorrectionEnabledPerUserSettings = false;
+        mAutoCorrectEnabled = false;
+        mCenterSuggestionTextToEnter = false;
         mAutoCorrectionThreshold = mAutoCorrectEnabled
                 ? readAutoCorrectionThreshold(res, prefs)
                 : AUTO_CORRECTION_DISABLED_THRESHOLD;
@@ -193,24 +190,22 @@ public class SettingsValues {
         mKeyLongpressTimeout = Settings.readKeyLongpressTimeout(prefs, res);
         mKeypressVibrationDuration = Settings.readKeypressVibrationDuration(prefs);
         mKeypressSoundVolume = Settings.readKeypressSoundVolume(prefs);
-        mEnableEmojiAltPhysicalKey = prefs.getBoolean(Settings.PREF_ENABLE_EMOJI_ALT_PHYSICAL_KEY, true);
+        mEnableEmojiAltPhysicalKey = false;
         mGestureInputEnabled = Settings.readGestureInputEnabled(prefs);
         mGestureTrailEnabled = prefs.getBoolean(Settings.PREF_GESTURE_PREVIEW_TRAIL, true);
         mAccount = null; // remove? or can it be useful somewhere?
         mGestureFloatingPreviewTextEnabled = !mInputAttributes.mDisableGestureFloatingPreviewText
                 && prefs.getBoolean(Settings.PREF_GESTURE_FLOATING_PREVIEW_TEXT, true);
-        mOverrideShowingSuggestions = mInputAttributes.mMayOverrideShowingSuggestions && readSuggestionsOverrideEnabled(prefs);
-        mSuggestionsEnabledPerUserSettings = (mInputAttributes.mShouldShowSuggestions && readSuggestionsEnabled(prefs))
-                || mOverrideShowingSuggestions;
-        mIncognitoModeEnabled = Settings.readAlwaysIncognitoMode(prefs) || mInputAttributes.mNoLearning
-                || mInputAttributes.mIsPasswordField;
+        mOverrideShowingSuggestions = false;
+        mSuggestionsEnabledPerUserSettings = false;
+        mIncognitoModeEnabled = false;
         mKeyboardHeightScale = prefs.getFloat(Settings.PREF_KEYBOARD_HEIGHT_SCALE, DEFAULT_SIZE_SCALE);
         mDisplayOrientation = res.getConfiguration().orientation;
         mSpaceSwipeHorizontal = Settings.readHorizontalSpaceSwipe(prefs);
         mSpaceSwipeVertical = Settings.readVerticalSpaceSwipe(prefs);
         mDeleteSwipeEnabled = Settings.readDeleteSwipeEnabled(prefs);
-        mAutospaceAfterPunctuationEnabled = Settings.readAutospaceAfterPunctuationEnabled(prefs);
-        mClipboardHistoryEnabled = Settings.readClipboardHistoryEnabled(prefs);
+        mAutospaceAfterPunctuationEnabled = false;
+        mClipboardHistoryEnabled = false;
         mClipboardHistoryRetentionTime = Settings.readClipboardHistoryRetentionTime(prefs, res);
 
         mOneHandedModeEnabled = Settings.readOneHandedModeEnabled(prefs, mDisplayOrientation == Configuration.ORIENTATION_PORTRAIT);
@@ -300,7 +295,7 @@ public class SettingsValues {
             return imm.hasMultipleEnabledSubtypesInThisIme(false /* include aux subtypes */);
         }
         return imm.hasMultipleEnabledSubtypesInThisIme(false /* include aux subtypes */)
-            || imm.hasMultipleEnabledIMEsOrSubtypes(false /* include aux subtypes */);
+                || imm.hasMultipleEnabledIMEsOrSubtypes(false /* include aux subtypes */);
     }
 
     public boolean isSameInputType(final EditorInfo editorInfo) {

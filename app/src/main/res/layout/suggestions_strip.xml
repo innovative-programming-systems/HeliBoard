@@ -11,16 +11,16 @@
         android:animateLayoutChanges="true"
         android:id="@+id/suggestions_strip_wrapper"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:hapticFeedbackEnabled="false"
         android:soundEffectsEnabled="false">
         <!-- Provide audio and haptic feedback by ourselves based on the keyboard settings.
              We just need to ignore the system's audio and haptic feedback settings. -->
         <ImageButton
             android:id="@+id/suggestions_strip_toolbar_key"
-            android:layout_width="@dimen/config_suggestions_strip_edge_key_width"
-            android:layout_height="@dimen/config_suggestions_strip_edge_key_width"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="0"
             android:layout_marginStart="4dp"
@@ -28,14 +28,14 @@
             android:contentDescription="@string/more_keys_strip_description" />
         <HorizontalScrollView
             android:id="@+id/toolbar_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:scrollbarThumbHorizontal="@color/toolbar_scrollbar"
             android:visibility="gone">
             <LinearLayout
                 android:id="@+id/toolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:orientation="horizontal"
                 style="?attr/suggestionWordStyle">
             </LinearLayout>
@@ -48,16 +48,16 @@
             android:id="@+id/suggestions_strip"
             android:orientation="horizontal"
             android:maxWidth="100dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:hapticFeedbackEnabled="false"
             android:soundEffectsEnabled="false" />
         <LinearLayout
             android:id="@+id/pinned_keys"
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             style="?attr/suggestionWordStyle">
         </LinearLayout>
     </LinearLayout>
