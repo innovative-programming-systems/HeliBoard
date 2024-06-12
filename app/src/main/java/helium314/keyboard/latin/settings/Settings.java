@@ -267,24 +267,23 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
 
     // Accessed from the settings interface, hence public
     public static boolean readKeypressSoundEnabled(final SharedPreferences prefs, final Resources res) {
-        return prefs.getBoolean(PREF_SOUND_ON, res.getBoolean(R.bool.config_default_sound_enabled));
+        return true;
     }
 
     public static boolean readVibrationEnabled(final SharedPreferences prefs, final Resources res) {
-        return prefs.getBoolean(PREF_VIBRATE_ON, res.getBoolean(R.bool.config_default_vibration_enabled))
-                && AudioAndHapticFeedbackManager.getInstance().hasVibrator();
+        return false;
     }
 
     public static boolean readAutoCorrectEnabled(final SharedPreferences prefs) {
-        return prefs.getBoolean(PREF_AUTO_CORRECTION, true);
+        return false;
     }
 
     public static boolean readMoreAutoCorrectEnabled(final SharedPreferences prefs) {
-        return prefs.getBoolean(PREF_MORE_AUTO_CORRECTION, true);
+        return false;
     }
 
     public void toggleAutoCorrect() {
-        mPrefs.edit().putBoolean(Settings.PREF_AUTO_CORRECTION, !readAutoCorrectEnabled(mPrefs)).apply();
+        mPrefs.edit().putBoolean(Settings.PREF_AUTO_CORRECTION, false).apply();
     }
 
     public static String readAutoCorrectConfidence(final SharedPreferences prefs, final Resources res) {
@@ -293,12 +292,11 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
     }
 
     public static boolean readCenterSuggestionTextToEnter(final SharedPreferences prefs, final Resources res) {
-        return prefs.getBoolean(PREF_CENTER_SUGGESTION_TEXT_TO_ENTER, res.getBoolean(R.bool.config_center_suggestion_text_to_enter));
+        return false;
     }
 
     public static boolean readBlockPotentiallyOffensive(final SharedPreferences prefs, final Resources res) {
-        return prefs.getBoolean(PREF_BLOCK_POTENTIALLY_OFFENSIVE,
-                res.getBoolean(R.bool.config_block_potentially_offensive));
+        return false;
     }
 
     public static boolean readGestureInputEnabled(final SharedPreferences prefs) {
@@ -311,11 +309,11 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
     }
 
     public static boolean readAlwaysIncognitoMode(final SharedPreferences prefs) {
-        return prefs.getBoolean(PREF_ALWAYS_INCOGNITO_MODE, false);
+        return false;
     }
 
     public void toggleAlwaysIncognitoMode() {
-        mPrefs.edit().putBoolean(Settings.PREF_ALWAYS_INCOGNITO_MODE, !readAlwaysIncognitoMode(mPrefs)).apply();
+        mPrefs.edit().putBoolean(Settings.PREF_ALWAYS_INCOGNITO_MODE, false).apply();
     }
 
 
@@ -352,16 +350,12 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
         return prefs.getBoolean(PREF_ENABLE_CLIPBOARD_HISTORY, true);
     }
 
-    public static int readClipboardHistoryRetentionTime(final SharedPreferences prefs,
-                                              final Resources res) {
-        final int minutes = prefs.getInt(
-                PREF_CLIPBOARD_HISTORY_RETENTION_TIME, UNDEFINED_PREFERENCE_VALUE_INT);
-        return (minutes != UNDEFINED_PREFERENCE_VALUE_INT) ? minutes
-                : readDefaultClipboardHistoryRetentionTime(res);
+    public static int readClipboardHistoryRetentionTime(final SharedPreferences prefs, final Resources res) {
+        return 32;
     }
 
     public static int readDefaultClipboardHistoryRetentionTime(final Resources res) {
-        return res.getInteger(R.integer.config_clipboard_history_retention_time);
+        return 40;
     }
 
     public static int readHorizontalSpaceSwipe(final SharedPreferences prefs) {
