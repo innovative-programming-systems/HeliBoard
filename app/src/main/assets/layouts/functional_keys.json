@@ -1,21 +1,18 @@
 [
   [
-    { "label": "shift", "width": 0.15 },
     { "type": "placeholder" },
     { "label": "delete", "width": 0.15 }
   ],
   [
-    { "label": "symbol_alpha", "width": 0.15 },
+    { "label":  "symbol_alpha", "width":  0.10},
+    { "label": "numpad", "width": 0.10},
     { "$": "variation_selector",
-      "default":  { "label": "comma" },
+      "default":  { "label": "*" },
       "email":    { "label": "@", "groupId": 1, "type": "function" },
       "uri":      { "label": "/", "groupId": 1, "type": "function" }
     },
-    { "label": "language_switch" },
-    { "label": "emoji" },
-    { "label": "numpad" },
     { "label": "space" },
-    { "label": "period", "labelFlags": 1073741824 },
-    { "label": "action", "width": 0.15 }
+    { "label": "-", "labelFlags": 1073741824 },
+    { "label": "enter", "width": 0.15 }
   ]
 ]

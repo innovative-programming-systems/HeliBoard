@@ -147,7 +147,7 @@ public class SettingsValues {
         mAutoCap = false;
         mVibrateOn = false;
         mSoundOn = true;
-        mKeyPreviewPopupOn = Settings.readKeyPreviewPopupEnabled(prefs, res);
+        mKeyPreviewPopupOn = false;
         mSlidingKeyInputPreviewEnabled = prefs.getBoolean(
                 DebugSettings.PREF_SLIDING_KEY_INPUT_PREVIEW, true);
         mShowsVoiceInputKey = false;
@@ -187,7 +187,7 @@ public class SettingsValues {
         mScreenMetrics = Settings.readScreenMetrics(res);
 
         // Compute other readable settings
-        mKeyLongpressTimeout = Settings.readKeyLongpressTimeout(prefs, res);
+        mKeyLongpressTimeout = 0;
         mKeypressVibrationDuration = Settings.readKeypressVibrationDuration(prefs);
         mKeypressSoundVolume = Settings.readKeypressSoundVolume(prefs);
         mEnableEmojiAltPhysicalKey = false;
@@ -239,7 +239,7 @@ public class SettingsValues {
         );
         mSpacingAndPunctuations = new SpacingAndPunctuations(res, mUrlDetectionEnabled);
         mBottomPaddingScale = prefs.getFloat(Settings.PREF_BOTTOM_PADDING_SCALE, DEFAULT_SIZE_SCALE);
-        mLongPressSymbolsForNumpad = prefs.getBoolean(Settings.PREFS_LONG_PRESS_SYMBOLS_FOR_NUMPAD, false);
+        mLongPressSymbolsForNumpad = false;
         mAutoShowToolbar = prefs.getBoolean(Settings.PREF_AUTO_SHOW_TOOLBAR, false);
         mAutoHideToolbar = readSuggestionsEnabled(prefs) && prefs.getBoolean(Settings.PREF_AUTO_HIDE_TOOLBAR, false);
         mHasCustomFunctionalLayout = CustomLayoutUtilsKt.hasCustomFunctionalLayout(selectedSubtype, context);

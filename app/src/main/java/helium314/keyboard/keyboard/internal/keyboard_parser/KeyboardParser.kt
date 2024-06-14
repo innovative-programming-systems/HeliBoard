@@ -202,8 +202,8 @@ class KeyboardParser(private val params: KeyboardParams, private val context: Co
                 functionalKeysBottom.removeFirst { it.label == KeyLabel.EMOJI }
             if (!Settings.getInstance().current.isLanguageSwitchKeyEnabled || !params.mId.isAlphabetKeyboard)
                 functionalKeysBottom.removeFirst { it.label == KeyLabel.LANGUAGE_SWITCH }
-            if (params.mId.mElementId != KeyboardId.ELEMENT_SYMBOLS)
-                functionalKeysBottom.removeFirst { it.label == KeyLabel.NUMPAD }
+            //if (params.mId.mElementId != KeyboardId.ELEMENT_SYMBOLS)
+                //functionalKeysBottom.removeFirst { it.label == KeyLabel.NUMPAD }
         }
         //   replace comma / period if 2 keys in normal bottom row
         if (baseKeys.last().size == 2) {

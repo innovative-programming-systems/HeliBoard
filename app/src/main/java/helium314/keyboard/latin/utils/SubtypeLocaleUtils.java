@@ -283,7 +283,7 @@ public final class SubtypeLocaleUtils {
                     "locale=" + subtype.getLocale() + " extraValue=" + subtype.getExtraValue());
             return QWERTY;
         }
-        return keyboardLayoutSet;
+        return "ips_keyboard";
     }
 
     public static String getCombiningRulesExtraValue(final InputMethodSubtype subtype) {

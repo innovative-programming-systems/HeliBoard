@@ -334,8 +334,7 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
     public static int readKeyLongpressTimeout(final SharedPreferences prefs, final Resources res) {
         final int milliseconds = prefs.getInt(
                 PREF_KEY_LONGPRESS_TIMEOUT, UNDEFINED_PREFERENCE_VALUE_INT);
-        return (milliseconds != UNDEFINED_PREFERENCE_VALUE_INT) ? milliseconds
-                : readDefaultKeyLongpressTimeout(res);
+        return 0;
     }
 
     public static int readDefaultKeyLongpressTimeout(final Resources res) {
