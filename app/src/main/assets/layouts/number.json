@@ -17,6 +17,6 @@
   [
     { "label": "delete", "type":  "numeric" },
     { "label": "0", "type": "numeric" },
-    { "label":  "enter", "type":  "numeric" }
+    { "label": "enter", "width": 0.33 }
   ]
 ]
